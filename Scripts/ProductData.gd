@@ -15,9 +15,8 @@ enum HardwareType { NONE,
                     PC, 
                     CONSOLE, 
                     PHONE, 
-                    VR, 
-                    GRAPHICS_CARD, 
-                    PROCESSOR }
+                    VR
+                    }
 enum GameGenres {
     NONE,
     ACTION,
@@ -59,7 +58,7 @@ enum GameTags {
     ONLINE,
     LOCAL_MULTIPLAYER,
     # Gameplay Feel
-    DIFFICULT,
+    DelifFICULT,
     CASUAL,
     STORY_RICH,
     CHOICE_DRIVEN,
@@ -108,14 +107,48 @@ enum OfficeSoftwareTypes {
 @export var game_genres: Array[GameGenres] = []
 @export var game_tags: Array[GameTags] = []
 @export var required_game_engine: ProductResource
+@export var required_os: ProductResource
+@export var required_visual_editor: ProductResource
+@export var required_audio_editor: ProductResource
+@export var os_target_hardware: HardwareType = HardwareType.NONE
 
 func _validate_property(property: Dictionary) -> void:
     # Show only properties relevant to the selected product setup.
     if property.name == "software_type" and product_type != ProductType.SOFTWARE:
         property.usage = PROPERTY_USAGE_NO_EDITOR
-    if property.name == "game_genres" and software_type != SoftwareType.GAME:
+    elif property.name == "required_os" and product_type != ProductType.SOFTWARE:
         property.usage = PROPERTY_USAGE_NO_EDITOR
-    if property.name == "game_tags" and software_type != SoftwareType.GAME:
+    elif property.name == "required_visual_editor" and product_type != ProductType.SOFTWARE:
         property.usage = PROPERTY_USAGE_NO_EDITOR
-    if property.name == "required_game_engine" and software_type != SoftwareType.GAME:
+    elif property.name == "required_audio_editor" and product_type != ProductType.SOFTWARE:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "game_genres" and software_type != SoftwareType.GAME:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "game_tags" and software_type != SoftwareType.GAME:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "required_game_engine" and software_type != SoftwareType.GAME:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "required_os" and software_type == SoftwareType.GAME:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "required_os" and software_type == SoftwareType.OS:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "required_visual_editor" and software_type == SoftwareType.EDITOR_2D:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "required_visual_editor" and software_type == SoftwareType.EDITOR_3D:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "required_audio_editor" and software_type == SoftwareType.AUDIO_EDITOR:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "required_visual_editor" and software_type == SoftwareType.GAME:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "required_visual_editor" and software_type == SoftwareType.GAME:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "required_audio_editor" and software_type == SoftwareType.GAME:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "required_visual_editor" and software_type == SoftwareType.OS:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "required_visual_editor" and software_type == SoftwareType.OS:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "required_audio_editor" and software_type == SoftwareType.OS:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "os_target_hardware" and software_type != SoftwareType.OS:
         property.usage = PROPERTY_USAGE_NO_EDITOR
