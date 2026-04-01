@@ -99,6 +99,13 @@ enum OfficeSoftwareTypes {
 
 @export_group("Product Details")
 @export var product_name = str("")
+@export var is_owner_company: bool = false:
+    set(value):
+        is_owner_company = value
+        notify_property_list_changed()
+@export var owner_company = CompanyResource
+@export var owner_worker = WorkerResource
+@export var lead_designer = WorkerResource
 @export var product_type: ProductType = ProductType.NONE:
     set(value):
         product_type = value
@@ -163,3 +170,29 @@ func _validate_property(property: Dictionary) -> void:
         property.usage = PROPERTY_USAGE_NO_EDITOR
     elif property.name == "office_software_type" and software_type != SoftwareType.OFFICE_SOFTWARE:
         property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "owner_company" and is_owner_company == true:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+    elif property.name == "owner_worker" and is_owner_company != true:
+        property.usage = PROPERTY_USAGE_NO_EDITOR
+        
+@export_group("Creative & Financial Info")
+@export var product_price: float = 0
+@export var units_sold: int = 0
+@export var development_costs: float = 0
+@export var product_profit: float = 0:
+    get:
+        return ((
+            product_price
+            * units_sold
+        ) - development_costs)
+@export_range(0.0, 100.0, 1.0) var phase_1_design_completion: float = 0
+@export_range(0.0, 100.0, 1.0) var phase_2_programming_art_completion: float = 0
+@export_range(0.0, 100.0, 1.0) var phase_3_qa_completion: float = 0
+@export var overall_quality: int = 0:
+    get:
+        return roundi((
+            phase_1_design_completion
+            + phase_2_programming_art_completion
+            + phase_3_qa_completion
+        ) / 3)
+@export var awards_won: Array[AwardsResource] = []

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ProductResource" format=3 uid="uid://d1sk1lgorcxes"]
 
+[ext_resource type="Script" uid="uid://c1rvi1dd68ehv" path="res://Scripts/AwardsData.gd" id="1_frmkt"]
 [ext_resource type="Script" uid="uid://cdi5axmt3nyco" path="res://Scripts/ProductData.gd" id="1_p500p"]
 
 [resource]
