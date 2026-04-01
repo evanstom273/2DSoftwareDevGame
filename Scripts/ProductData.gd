@@ -103,9 +103,9 @@ enum OfficeSoftwareTypes {
     set(value):
         is_owner_company = value
         notify_property_list_changed()
-@export var owner_company = CompanyResource
-@export var owner_worker = WorkerResource
-@export var lead_designer = WorkerResource
+@export var owner_company: CompanyResource
+@export var owner_worker: WorkerResource
+@export var lead_designer = str("")
 @export var product_type: ProductType = ProductType.NONE:
     set(value):
         product_type = value
