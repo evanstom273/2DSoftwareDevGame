@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CompanyResource" format=3 uid="uid://ebqc31n477ga"]
+
+[ext_resource type="Script" uid="uid://bwnikn5pgovg2" path="res://Scripts/WorkerData.gd" id="1_h1hjt"]
+[ext_resource type="Script" uid="uid://cqhk0v0mdkao6" path="res://Scripts/CompamyData.gd" id="1_um4jo"]
+
+[resource]
+script = ExtResource("1_um4jo")
+company_name = null
+product_list = null
+metadata/_custom_type_script = "uid://cqhk0v0mdkao6"
